@@ -24,7 +24,7 @@ fetch("https://fakestoreapi.com/products")
                       type="button"
                       class="btn btn-sm btn-outline-secondary bg-success text-black"
                     >
-                      Price: $${product.price}
+                      Buy now - $${product.price}
                     </button>
                     <button
                       type="button"
@@ -33,7 +33,7 @@ fetch("https://fakestoreapi.com/products")
                         Add to Cart
                     </button>
                   </div>
-                  <small class="text-body-secondary">View Details</small>
+                  <small class="text-body-secondary">${product.rating.rate} / ${product.rating.count}</small>
                 </div>
               </div>
             </div>
