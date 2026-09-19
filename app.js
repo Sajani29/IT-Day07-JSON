@@ -1,24 +1,46 @@
 //console.log("hii");
 
-fetch("https://jsonplaceholder.typicode.com/todos")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
+fetch("https://fakestoreapi.com/products")
+    .then(res => res.json())
+    .then((data) => {
+        console.log(data);
 
-    let customer = document.getElementById("customer-table");
+        let productsContainer = document.getElementById("product-container");
 
-    let body = "";
+        let body = "";
+        data.forEach((product) => {
+            body += `
+            <div class="col">
+            <div class="card shadow-sm">
+              <img src="${product.image}" class="card-img-top" alt="..." />
+              <h1 class="card-title">${product.title}</h1>
+              <div class="card-body">
+                <p class="card-text">
+                  ${product.description}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary bg-success text-black"
+                    >
+                      Price: $${product.price}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary bg-info text-black"
+                    >
+                        Add to Cart
+                    </button>
+                  </div>
+                  <small class="text-body-secondary">View Details</small>
+                </div>
+              </div>
+            </div>
+          </div>
+            `;
+        });
 
-    data.forEach(element => {
-        body += `
-        <tr>
-            <td>${element.id}</td>
-            <td>${element.title}</td>
-            <td>${element.userId}</td>
-            <td>${element.completed }</td>
-        </tr>
-        `;
-        
-    });
-    customer.innerHTML = body;
-  });
+        productsContainer.innerHTML = body;
+
+    })
